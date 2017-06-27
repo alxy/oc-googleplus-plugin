@@ -1,11 +1,10 @@
 <?php namespace Alxy\GooglePlus\Components;
 
 use Cms\Classes\ComponentBase;
-use HTML;
+use Html;
 
 class Share extends ComponentBase
 {
-
     public $lang;
     public $attributes;
 
@@ -279,9 +278,10 @@ class Share extends ComponentBase
         ];
     }
 
-    public function onRun() {
+    public function onRun()
+    {
         $attributes = array_except($this->getProperties(), ['lang']);
-        array_walk($attributes, function(&$value, $key) {
+        array_walk($attributes, function (&$value, $key) {
             switch ($value) {
                 case '1':
                     $value = 'true';
@@ -290,14 +290,13 @@ class Share extends ComponentBase
                 case '0':
                     $value = 'false';
                     break;
-                
+
                 default:
                     $value = $value;
                     break;
             }
         });
-        $this->attributes = HTML::attributes($attributes);
+        $this->attributes = Html::attributes($attributes);
         $this->lang = $this->property('lang');
     }
-
 }
